@@ -1,0 +1,1154 @@
+/* ================================================================
+   MZ Easy Manage – Admin Stylesheet
+   Modern SaaS-style dashboard UI
+   ================================================================ */
+
+/* ── CSS Custom Properties (Light / Dark) ───────────────── */
+:root {
+    --mzem-bg: #f1f5f9;
+    --mzem-surface: #ffffff;
+    --mzem-surface-hover: #f8fafc;
+    --mzem-border: #e2e8f0;
+    --mzem-border-light: #f1f5f9;
+    --mzem-text: #1e293b;
+    --mzem-text-secondary: #64748b;
+    --mzem-text-muted: #94a3b8;
+    --mzem-primary: #4f46e5;
+    --mzem-primary-light: #e0e7ff;
+    --mzem-primary-dark: #3730a3;
+    --mzem-success: #10b981;
+    --mzem-success-light: #d1fae5;
+    --mzem-warning: #f59e0b;
+    --mzem-warning-light: #fef3c7;
+    --mzem-danger: #ef4444;
+    --mzem-danger-light: #fee2e2;
+    --mzem-info: #3b82f6;
+    --mzem-info-light: #dbeafe;
+    --mzem-radius: 12px;
+    --mzem-radius-sm: 8px;
+    --mzem-radius-lg: 16px;
+    --mzem-shadow: 0 1px 3px rgba(0, 0, 0, .06), 0 1px 2px rgba(0, 0, 0, .04);
+    --mzem-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, .07), 0 2px 4px -2px rgba(0, 0, 0, .05);
+    --mzem-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, .08), 0 4px 6px -4px rgba(0, 0, 0, .05);
+    --mzem-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --mzem-transition: all .2s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* Dark-mode (body class toggle) */
+body.mzem-dark {
+    --mzem-bg: #0f172a;
+    --mzem-surface: #1e293b;
+    --mzem-surface-hover: #334155;
+    --mzem-border: #334155;
+    --mzem-border-light: #1e293b;
+    --mzem-text: #f1f5f9;
+    --mzem-text-secondary: #94a3b8;
+    --mzem-text-muted: #64748b;
+    --mzem-primary-light: rgba(79, 70, 229, .15);
+    --mzem-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+    --mzem-shadow-md: 0 4px 6px rgba(0, 0, 0, .3);
+}
+
+/* ── Wrapper ─────────────────────────────────────────────── */
+.mzem-wrap {
+    max-width: 1280px;
+    margin: 20px auto;
+    padding: 0 24px;
+    font-family: var(--mzem-font);
+    color: var(--mzem-text);
+}
+
+.mzem-wrap * {
+    box-sizing: border-box;
+}
+
+/* ── Page Header ─────────────────────────────────────────── */
+.mzem-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--mzem-border);
+}
+
+.mzem-page-header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--mzem-text);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mzem-page-header h1 .mzem-icon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--mzem-primary), #7c3aed);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 18px;
+}
+
+.mzem-page-header .mzem-version {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--mzem-primary);
+    background: var(--mzem-primary-light);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+/* ── Cards ────────────────────────────────────────────────── */
+.mzem-card {
+    background: var(--mzem-surface);
+    border-radius: var(--mzem-radius);
+    border: 1px solid var(--mzem-border);
+    box-shadow: var(--mzem-shadow);
+    padding: 24px;
+    margin-bottom: 20px;
+    transition: var(--mzem-transition);
+}
+
+.mzem-card:hover {
+    box-shadow: var(--mzem-shadow-md);
+}
+
+.mzem-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--mzem-border-light);
+}
+
+.mzem-card-header h2 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--mzem-text);
+    margin: 0;
+}
+
+.mzem-card-header p {
+    font-size: 13px;
+    color: var(--mzem-text-muted);
+    margin: 4px 0 0;
+}
+
+/* ── Stat Cards Grid ──────────────────────────────────────── */
+.mzem-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.mzem-stat-card {
+    background: var(--mzem-surface);
+    border-radius: var(--mzem-radius);
+    border: 1px solid var(--mzem-border);
+    box-shadow: var(--mzem-shadow);
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: var(--mzem-transition);
+}
+
+.mzem-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--mzem-shadow-lg);
+}
+
+.mzem-stat-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--mzem-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.mzem-stat-icon.purple {
+    background: var(--mzem-primary-light);
+    color: var(--mzem-primary);
+}
+
+.mzem-stat-icon.green {
+    background: var(--mzem-success-light);
+    color: var(--mzem-success);
+}
+
+.mzem-stat-icon.blue {
+    background: var(--mzem-info-light);
+    color: var(--mzem-info);
+}
+
+.mzem-stat-icon.orange {
+    background: var(--mzem-warning-light);
+    color: var(--mzem-warning);
+}
+
+.mzem-stat-info h3 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--mzem-text);
+    line-height: 1;
+}
+
+.mzem-stat-info p {
+    font-size: 13px;
+    color: var(--mzem-text-secondary);
+    margin: 4px 0 0;
+}
+
+/* ── Toggle Switch ────────────────────────────────────────── */
+.mzem-toggle {
+    position: relative;
+    display: inline-flex !important;
+    align-items: center;
+    cursor: pointer;
+    gap: 10px;
+    user-select: none;
+}
+
+.mzem-toggle input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.mzem-toggle-slider {
+    width: 48px;
+    height: 26px;
+    background: #cbd5e1;
+    border-radius: 26px;
+    position: relative;
+    transition: var(--mzem-transition);
+    flex-shrink: 0;
+}
+
+.mzem-toggle-slider::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    top: 3px;
+    left: 3px;
+    transition: var(--mzem-transition);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .15);
+}
+
+.mzem-toggle input:checked+.mzem-toggle-slider {
+    background: var(--mzem-primary);
+}
+
+.mzem-toggle input:checked+.mzem-toggle-slider::after {
+    transform: translateX(22px);
+}
+
+.mzem-toggle-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--mzem-text);
+}
+
+/* ── Master Toggle Banner ─────────────────────────────────── */
+.mzem-master-toggle {
+    background: var(--mzem-primary-light);
+    border: 1px solid rgba(79, 70, 229, .2);
+    border-radius: var(--mzem-radius);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.mzem-master-toggle .mzem-toggle-label {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.mzem-master-toggle .mzem-desc {
+    font-size: 13px;
+    color: var(--mzem-text-secondary);
+    margin: 2px 0 0;
+}
+
+/* ── Tabs ─────────────────────────────────────────────────── */
+.mzem-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--mzem-border);
+    margin-bottom: 24px;
+}
+
+.mzem-tab {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--mzem-text-secondary);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: var(--mzem-transition);
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.mzem-tab:hover {
+    color: var(--mzem-primary);
+}
+
+.mzem-tab.active {
+    color: var(--mzem-primary);
+    border-bottom-color: var(--mzem-primary);
+    font-weight: 600;
+}
+
+.mzem-tab-content {
+    display: none;
+}
+
+.mzem-tab-content.active {
+    display: block;
+}
+
+/* ── Tables ───────────────────────────────────────────────── */
+.mzem-table-wrap {
+    overflow-x: auto;
+    border-radius: var(--mzem-radius);
+    border: 1px solid var(--mzem-border);
+}
+
+.mzem-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.mzem-table thead {
+    background: var(--mzem-bg);
+}
+
+.mzem-table th {
+    padding: 12px 16px;
+    font-weight: 600;
+    color: var(--mzem-text-secondary);
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    border-bottom: 1px solid var(--mzem-border);
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+}
+
+.mzem-table th:hover {
+    color: var(--mzem-primary);
+}
+
+.mzem-table th .sort-icon {
+    margin-left: 4px;
+    opacity: .4;
+}
+
+.mzem-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--mzem-border-light);
+    color: var(--mzem-text);
+    vertical-align: middle;
+}
+
+.mzem-table tbody tr:hover {
+    background: var(--mzem-surface-hover);
+}
+
+.mzem-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.mzem-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: var(--mzem-radius-sm);
+    border: none;
+    cursor: pointer;
+    transition: var(--mzem-transition);
+    font-family: var(--mzem-font);
+    text-decoration: none;
+    line-height: 1.4;
+}
+
+.mzem-btn-primary {
+    background: var(--mzem-primary);
+    color: #fff;
+}
+
+.mzem-btn-primary:hover {
+    background: var(--mzem-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, .3);
+}
+
+.mzem-btn-secondary {
+    background: var(--mzem-surface);
+    color: var(--mzem-text);
+    border: 1px solid var(--mzem-border);
+}
+
+.mzem-btn-secondary:hover {
+    background: var(--mzem-surface-hover);
+    border-color: var(--mzem-text-muted);
+}
+
+.mzem-btn-success {
+    background: var(--mzem-success);
+    color: #fff;
+}
+
+.mzem-btn-success:hover {
+    background: #059669;
+}
+
+.mzem-btn-danger {
+    background: var(--mzem-danger);
+    color: #fff;
+}
+
+.mzem-btn-danger:hover {
+    background: #dc2626;
+}
+
+.mzem-btn-sm {
+    padding: 6px 14px;
+    font-size: 13px;
+}
+
+.mzem-btn:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* ── Form Controls ────────────────────────────────────────── */
+.mzem-form-group {
+    margin-bottom: 20px;
+}
+
+.mzem-form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--mzem-text);
+    margin-bottom: 6px;
+}
+
+.mzem-form-group .mzem-desc {
+    font-size: 12px;
+    color: var(--mzem-text-muted);
+    margin-top: 4px;
+}
+
+.mzem-input,
+.mzem-select,
+.mzem-textarea {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 14px;
+    border: 1px solid var(--mzem-border);
+    border-radius: var(--mzem-radius-sm);
+    background: var(--mzem-surface);
+    color: var(--mzem-text);
+    font-family: var(--mzem-font);
+    transition: var(--mzem-transition);
+}
+
+.mzem-input:focus,
+.mzem-select:focus,
+.mzem-textarea:focus {
+    outline: none;
+    border-color: var(--mzem-primary);
+    box-shadow: 0 0 0 3px var(--mzem-primary-light);
+}
+
+.mzem-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+}
+
+.mzem-textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* ── Checkbox Row ─────────────────────────────────────────── */
+.mzem-checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--mzem-border-light);
+}
+
+.mzem-checkbox-row:last-child {
+    border-bottom: none;
+}
+
+.mzem-checkbox-row label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--mzem-text);
+    min-width: 200px;
+}
+
+.mzem-checkbox-row .mzem-desc {
+    font-size: 13px;
+    color: var(--mzem-text-secondary);
+}
+
+.mzem-checkbox-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--mzem-primary);
+    cursor: pointer;
+}
+
+/* ── Search Bar ───────────────────────────────────────────── */
+.mzem-search-bar {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.mzem-search-bar input {
+    width: 100%;
+    padding: 10px 14px 10px 40px;
+    border: 1px solid var(--mzem-border);
+    border-radius: var(--mzem-radius-sm);
+    font-size: 14px;
+    background: var(--mzem-surface);
+    color: var(--mzem-text);
+}
+
+.mzem-search-bar input:focus {
+    outline: none;
+    border-color: var(--mzem-primary);
+    box-shadow: 0 0 0 3px var(--mzem-primary-light);
+}
+
+.mzem-search-bar::before {
+    content: '🔍';
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    opacity: .5;
+}
+
+/* ── Status Badge ─────────────────────────────────────────── */
+.mzem-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 20px;
+}
+
+.mzem-badge-success {
+    background: var(--mzem-success-light);
+    color: #065f46;
+}
+
+.mzem-badge-warning {
+    background: var(--mzem-warning-light);
+    color: #92400e;
+}
+
+.mzem-badge-danger {
+    background: var(--mzem-danger-light);
+    color: #991b1b;
+}
+
+.mzem-badge-info {
+    background: var(--mzem-info-light);
+    color: #1e40af;
+}
+
+/* ── Progress Steps ───────────────────────────────────────── */
+.mzem-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin: 28px 0;
+}
+
+.mzem-step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--mzem-text-muted);
+    font-weight: 500;
+}
+
+.mzem-step.active {
+    color: var(--mzem-primary);
+}
+
+.mzem-step.done {
+    color: var(--mzem-success);
+}
+
+.mzem-step-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--mzem-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.mzem-step.active .mzem-step-number {
+    background: var(--mzem-primary);
+    color: #fff;
+    border-color: var(--mzem-primary);
+}
+
+.mzem-step.done .mzem-step-number {
+    background: var(--mzem-success);
+    color: #fff;
+    border-color: var(--mzem-success);
+}
+
+.mzem-step-line {
+    width: 48px;
+    height: 2px;
+    background: var(--mzem-border);
+    margin: 0 8px;
+}
+
+.mzem-step-line.done {
+    background: var(--mzem-success);
+}
+
+/* ── Server Info Grid ─────────────────────────────────────── */
+.mzem-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.mzem-info-item {
+    padding: 16px;
+    background: var(--mzem-bg);
+    border-radius: var(--mzem-radius-sm);
+    border: 1px solid var(--mzem-border);
+}
+
+.mzem-info-item .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--mzem-text-muted);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.mzem-info-item .value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--mzem-text);
+}
+
+/* ── Toast Notification (Admin) ───────────────────────────── */
+.mzem-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    padding: 14px 24px;
+    border-radius: var(--mzem-radius);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: var(--mzem-font);
+    box-shadow: var(--mzem-shadow-lg);
+    z-index: 999999;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: all .35s cubic-bezier(.4, 0, .2, 1);
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mzem-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mzem-toast-success {
+    background: linear-gradient(135deg, #059669, #10b981);
+}
+
+.mzem-toast-error {
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+}
+
+.mzem-toast-info {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+}
+
+/* ── Pagination ───────────────────────────────────────────── */
+.mzem-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.mzem-pagination button {
+    padding: 6px 12px;
+    border: 1px solid var(--mzem-border);
+    background: var(--mzem-surface);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--mzem-text);
+    transition: var(--mzem-transition);
+}
+
+.mzem-pagination button:hover {
+    border-color: var(--mzem-primary);
+    color: var(--mzem-primary);
+}
+
+.mzem-pagination button.active {
+    background: var(--mzem-primary);
+    color: #fff;
+    border-color: var(--mzem-primary);
+}
+
+.mzem-pagination button:disabled {
+    opacity: .4;
+    cursor: default;
+}
+
+/* ── Quick Actions Grid ───────────────────────────────────── */
+.mzem-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.mzem-action-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 24px 16px;
+    background: var(--mzem-surface);
+    border: 1px solid var(--mzem-border);
+    border-radius: var(--mzem-radius);
+    text-decoration: none;
+    color: var(--mzem-text);
+    transition: var(--mzem-transition);
+    text-align: center;
+}
+
+.mzem-action-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--mzem-shadow-md);
+    border-color: var(--mzem-primary);
+    color: var(--mzem-primary);
+}
+
+.mzem-action-card .icon {
+    font-size: 28px;
+}
+
+.mzem-action-card .label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* ── Radio buttons ────────────────────────────────────────── */
+.mzem-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+    max-width: 500px;
+}
+
+.mzem-radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--mzem-text);
+    padding: 12px 16px;
+    background: var(--mzem-bg);
+    border: 1px solid var(--mzem-border);
+    border-radius: var(--mzem-radius-sm);
+    transition: var(--mzem-transition);
+}
+
+.mzem-radio-group label:hover {
+    border-color: var(--mzem-primary);
+    background: var(--mzem-primary-light);
+}
+
+.mzem-radio-group input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--mzem-border);
+    border-radius: 50%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.mzem-radio-group input[type="radio"]:checked {
+    border-color: #3582c4;
+}
+
+.mzem-radio-group input[type="radio"]:checked::before {
+    content: "";
+    border-radius: 50%;
+    width: 0.8rem; /* Adjusted for better fit in 20px circle */
+    height: 0.8rem;
+    background-color: #3582c4;
+}
+
+/* ── Inline Toggle Layout ─────────────────────────────────── */
+.mzem-form-inline {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.mzem-form-inline label {
+    margin-bottom: 0 !important;
+}
+
+/* ── Drag & Drop Order Styles ────────────────────────────── */
+.mzem-order-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mzem-order-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--mzem-surface);
+    border: 1px solid var(--mzem-border);
+    border-radius: var(--mzem-radius-sm);
+    margin-bottom: 8px;
+    cursor: grab;
+    transition: var(--mzem-transition);
+}
+
+.mzem-order-item:active {
+    cursor: grabbing;
+}
+
+.mzem-order-item:hover {
+    border-color: var(--mzem-primary);
+    box-shadow: var(--mzem-shadow);
+}
+
+.mzem-order-item .handle {
+    color: var(--mzem-text-muted);
+    font-size: 18px;
+    display: flex;
+}
+
+.mzem-order-item .title {
+    flex-grow: 1;
+    font-weight: 500;
+}
+
+.mzem-order-item .id-badge {
+    font-size: 11px;
+    color: var(--mzem-text-muted);
+    background: var(--mzem-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.sortable-ghost {
+    opacity: 0.4;
+    background: var(--mzem-primary-light);
+    border: 2px dashed var(--mzem-primary);
+}
+
+/* ── Checkbox Grid ────────────────────────────────────────── */
+.mzem-checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+}
+
+.mzem-checkbox-grid label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--mzem-transition);
+}
+
+.mzem-checkbox-grid label:hover {
+    background: var(--mzem-bg);
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+.mzem-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--mzem-border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--mzem-text-muted);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 782px) {
+    .mzem-wrap {
+        padding: 0 12px;
+    }
+
+    .mzem-stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .mzem-page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .mzem-info-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .mzem-actions-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .mzem-checkbox-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .mzem-checkbox-row label {
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .mzem-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mzem-actions-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Loading Spinner ──────────────────────────────────────── */
+.mzem-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--mzem-border);
+    border-top-color: var(--mzem-primary);
+    border-radius: 50%;
+    animation: mzem-spin .6s linear infinite;
+}
+
+@keyframes mzem-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.mzem-loading-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    gap: 12px;
+    color: var(--mzem-text-secondary);
+    font-size: 14px;
+}
+
+/* ── Empty State ── */
+.mzem-empty-state {
+    text-align: center;
+    padding: 48px 20px;
+    color: var(--mzem-text-muted);
+}
+
+.mzem-empty-state .icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: .4;
+}
+
+.mzem-empty-state h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--mzem-text-secondary);
+    margin: 0 0 8px;
+}
+
+.mzem-empty-state p {
+    font-size: 14px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* hide WP admin notices on our pages */
+.mzem-wrap .notice:not(.mzem-toast),
+.mzem-wrap .updated,
+.mzem-wrap .error {
+    display: none !important;
+}
+
+/* ── Drop Zone ────────────────────────────────────────────── */
+.mzem-dropzone {
+    border: 2px dashed var(--mzem-border);
+    border-radius: var(--mzem-radius);
+    padding: 48px 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--mzem-transition);
+    background: var(--mzem-bg);
+}
+
+.mzem-dropzone:hover,
+.mzem-dropzone.dragover {
+    border-color: var(--mzem-primary);
+    background: var(--mzem-primary-light);
+}
+
+.mzem-dropzone .icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+    opacity: .5;
+}
+
+.mzem-dropzone h3 {
+    font-size: 16px;
+    margin: 0 0 6px;
+    color: var(--mzem-text);
+}
+
+.mzem-dropzone p {
+    font-size: 13px;
+    color: var(--mzem-text-muted);
+    margin: 0;
+}
+
+/* ── Two-column Layout ────────────────────────────────────── */
+.mzem-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 782px) {
+    .mzem-two-col {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Save Bar ─────────────────────────────────────────────── */
+.mzem-save-bar {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--mzem-border);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.mzem-save-bar .mzem-desc {
+    font-size: 13px;
+    color: var(--mzem-text-muted);
+    font-style: italic;
+}
+
+/* ── Category Filter Tags ─────────────────────────────────── */
+.mzem-filter-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.mzem-filter-tag {
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 20px;
+    border: 1px solid var(--mzem-border);
+    background: var(--mzem-surface);
+    color: var(--mzem-text-secondary);
+    cursor: pointer;
+    transition: var(--mzem-transition);
+}
+
+.mzem-filter-tag:hover,
+.mzem-filter-tag.active {
+    background: var(--mzem-primary);
+    color: #fff;
+    border-color: var(--mzem-primary);
+}
