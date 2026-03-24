@@ -43,7 +43,6 @@ class MZEM_Core {
         new MZEM_Export_Import();
         new MZEM_Custom_Order();
     }
-
     /* ── Admin Menus ──────────────────────────────────────── */
     public function register_menus() {
 
@@ -54,7 +53,7 @@ class MZEM_Core {
             'mzem-dashboard',
             array( $this, 'render_dashboard' ),
             'dashicons-screenoptions',
-            3
+            65
         );
 
         $subpages = array(
@@ -160,7 +159,7 @@ class MZEM_Core {
                 'sortable-js',
                 MZEM_URL . 'assets/js/vendor/sortable.min.js',
                 array(),
-                '1.15.0',
+                '1.15.7',
                 true
             );
         }
