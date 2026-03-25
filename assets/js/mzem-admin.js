@@ -51,10 +51,10 @@
                 xhr.setRequestHeader('X-WP-Nonce', mzemData.restNonce);
             },
             success: function (res) {
-                if (res.posts !== undefined)         $('#mzem-stat-posts').text(res.posts);
-                if (res.pages !== undefined)          $('#mzem-stat-pages').text(res.pages);
-                if (res.cpt !== undefined)            $('#mzem-stat-cpt').text(res.cpt);
-                if (res.custom_fields !== undefined)  $('#mzem-stat-fields').text(res.custom_fields);
+                if (res.posts !== undefined) $('#mzem-stat-posts').text(res.posts);
+                if (res.pages !== undefined) $('#mzem-stat-pages').text(res.pages);
+                if (res.cpt !== undefined) $('#mzem-stat-cpt').text(res.cpt);
+                if (res.custom_fields !== undefined) $('#mzem-stat-fields').text(res.custom_fields);
             }
         });
     };
@@ -72,19 +72,19 @@
             url: mzemData.ajaxUrl,
             method: 'POST',
             data: {
-                action:                'mzem_save_protection',
-                nonce:                 mzemData.nonce,
-                enabled:               $('#mzem-protection-enabled').is(':checked') ? 1 : 0,
-                disable_right_click:   $('#mzem-disable-right-click').is(':checked') ? 1 : 0,
-                disable_keyboard:      $('#mzem-disable-keyboard').is(':checked') ? 1 : 0,
-                disable_text_select:   $('#mzem-disable-text-select').is(':checked') ? 1 : 0,
-                disable_image_drag:    $('#mzem-disable-image-drag').is(':checked') ? 1 : 0,
-                disable_copy:          $('#mzem-disable-copy').is(':checked') ? 1 : 0,
-                notification_message:  $('#mzem-notification-message').val(),
-                notification_type:     $('input[name="mzem_notification_type"]:checked').val(),
-                skip_admin:            $('#mzem-skip-admin').is(':checked') ? 1 : 0,
-                post_types:            postTypes,
-                exclude_ids:           $('#mzem-exclude-ids').val()
+                action: 'mzem_save_protection',
+                nonce: mzemData.nonce,
+                enabled: $('#mzem-protection-enabled').is(':checked') ? 1 : 0,
+                disable_right_click: $('#mzem-disable-right-click').is(':checked') ? 1 : 0,
+                disable_keyboard: $('#mzem-disable-keyboard').is(':checked') ? 1 : 0,
+                disable_text_select: $('#mzem-disable-text-select').is(':checked') ? 1 : 0,
+                disable_image_drag: $('#mzem-disable-image-drag').is(':checked') ? 1 : 0,
+                disable_copy: $('#mzem-disable-copy').is(':checked') ? 1 : 0,
+                notification_message: $('#mzem-notification-message').val(),
+                notification_type: $('input[name="mzem_notification_type"]:checked').val(),
+                skip_admin: $('#mzem-skip-admin').is(':checked') ? 1 : 0,
+                post_types: postTypes,
+                exclude_ids: $('#mzem-exclude-ids').val()
             },
             success: function (res) {
                 if (res.success) {
@@ -108,8 +108,8 @@
             url: mzemData.ajaxUrl,
             method: 'POST',
             data: {
-                action:   'mzem_save_upload_limit',
-                nonce:    mzemData.nonce,
+                action: 'mzem_save_upload_limit',
+                nonce: mzemData.nonce,
                 limit_mb: limitMb
             },
             success: function (res) {
@@ -319,10 +319,10 @@
             url: mzemData.ajaxUrl,
             method: 'POST',
             data: {
-                action:    'mzem_save_cf_columns',
-                nonce:     mzemData.nonce,
+                action: 'mzem_save_cf_columns',
+                nonce: mzemData.nonce,
                 post_type: postType,
-                fields:    MZEM._cfSelectedFields
+                fields: MZEM._cfSelectedFields
             },
             success: function (res) {
                 if (res.success) {
@@ -346,15 +346,15 @@
             url: mzemData.ajaxUrl,
             method: 'POST',
             data: {
-                action:    'mzem_get_posts_data',
-                nonce:     mzemData.nonce,
+                action: 'mzem_get_posts_data',
+                nonce: mzemData.nonce,
                 post_type: postType,
-                fields:    fields,
-                search:    search,
-                orderby:   orderby,
-                order:     order,
-                paged:     page,
-                per_page:  20
+                fields: fields,
+                search: search,
+                orderby: orderby,
+                order: order,
+                paged: page,
+                per_page: 20
             },
             success: function (res) {
                 if (res.success) {
@@ -374,7 +374,7 @@
         html += '<th data-sort="date">Date <span class="sort-icon">↕</span></th>';
 
         fields.forEach(function (f) {
-            html += '<th>' + MZEM.escHtml(f) + '</th>';
+            html += '<th>' + MZEM.escHtml(MZEM.humanizeField(f)) + '</th>';
         });
 
         html += '</tr></thead><tbody>';
@@ -394,9 +394,19 @@
             html += '<td>' + MZEM.escHtml(post.date) + '</td>';
 
             fields.forEach(function (f) {
-                var val = post[f] !== null && post[f] !== undefined && post[f] !== '' ? post[f] : '—';
-                if (typeof val === 'string' && val.length > 60) val = val.substring(0, 60) + '…';
-                html += '<td>' + MZEM.escHtml(String(val)) + '</td>';
+                var val = post[f];
+                // Image object returned by PHP resolve_meta_value for attachments
+                if (val && typeof val === 'object' && val.type === 'image') {
+                    html += '<td>' + val.html + '</td>';
+                } else {
+                    val = val !== null && val !== undefined && val !== '' ? val : '—';
+                    // Format compact YYYYMMDD dates → YYYY-MM-DD (e.g. 20250430 → 2025-04-30)
+                    if (typeof val === 'string' && /^\d{8}$/.test(val)) {
+                        val = val.substring(0, 4) + '-' + val.substring(4, 6) + '-' + val.substring(6, 8);
+                    }
+                    if (typeof val === 'string' && val.length > 60) val = val.substring(0, 60) + '…';
+                    html += '<td>' + MZEM.escHtml(String(val)) + '</td>';
+                }
             });
 
             html += '</tr>';
@@ -458,10 +468,10 @@
             url: mzemData.ajaxUrl,
             method: 'POST',
             data: {
-                action:     'mzem_export',
-                nonce:      mzemData.nonce,
+                action: 'mzem_export',
+                nonce: mzemData.nonce,
                 post_types: postTypes,
-                format:     format
+                format: format
             },
             success: function (res) {
                 $('#mzem-export-btn').prop('disabled', false).html('📦 Export');
@@ -475,7 +485,7 @@
                     a.download = res.data.filename;
                     document.body.appendChild(a);
                     a.click();
-                    setTimeout(function() {
+                    setTimeout(function () {
                         document.body.removeChild(a);
                         window.URL.revokeObjectURL(url);
                     }, 0);
@@ -576,6 +586,17 @@
         var div = document.createElement('div');
         div.appendChild(document.createTextNode(str));
         return div.innerHTML;
+    };
+
+    /**
+     * Convert a raw meta key into a readable label.
+     * e.g. "_product_cat_id" → "Product Cat Id"
+     */
+    MZEM.humanizeField = function (key) {
+        return key
+            .replace(/^_+/, '')          // strip leading underscores
+            .replace(/[_-]+/g, ' ')      // underscores / hyphens → spaces
+            .replace(/\b\w/g, function (c) { return c.toUpperCase(); }); // title-case
     };
 
     /* ════════════════════════════════════════════════════════
@@ -724,7 +745,7 @@
         var loadOrderPosts = function (postType) {
             $('#mzem-order-loader').show();
             $('#mzem-order-save').prop('disabled', true);
-            
+
             $.ajax({
                 url: mzemData.ajaxUrl,
                 method: 'POST',
@@ -734,7 +755,7 @@
                     if (res.success) {
                         var list = $('#mzem-order-list');
                         list.empty();
-                        
+
                         if (!res.data.posts.length) {
                             list.html('<div style="padding: 40px; text-align: center; color: var(--mzem-text-muted);">No posts found for this post type.</div>');
                             return;
@@ -750,9 +771,21 @@
                             );
                         });
 
-                        // Initialize Sortable
-                        if (window.Sortable) {
-                            new Sortable(document.getElementById('mzem-order-list'), {
+                        // Initialize Sortable – destroy previous instance first.
+                        // Resolve the constructor: supports window.Sortable and
+                        // window.Sortable.default (some UMD/ESM builds).
+                        var SortableLib = (typeof window.Sortable === 'function')
+                            ? window.Sortable
+                            : (window.Sortable && typeof window.Sortable.default === 'function')
+                                ? window.Sortable.default
+                                : null;
+
+                        if (SortableLib) {
+                            if (MZEM._sortableInstance) {
+                                MZEM._sortableInstance.destroy();
+                                MZEM._sortableInstance = null;
+                            }
+                            MZEM._sortableInstance = new SortableLib(document.getElementById('mzem-order-list'), {
                                 handle: '.handle',
                                 animation: 150,
                                 ghostClass: 'sortable-ghost',

@@ -4,7 +4,7 @@ Tags: clone, duplicate, custom fields, content protection, security
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,10 @@ The admin dashboard is built with a responsive SaaS-style design that works grea
 3. Content Protection settings.
 
 == Changelog ==
+
+= 1.0.1 =
+* Fixed: Custom Order drag-and-drop not working due to SortableJS global detection.
+* Fixed: Custom Fields column headers now display human-readable labels instead of raw meta key names.
 
 = 1.0.0 =
 * Initial release.
